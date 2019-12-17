@@ -12,27 +12,28 @@
     <title>Online Dictionary</title>
     <link href="css/dict.css" type="text/css" rel="stylesheet">
     <script src="jQuery/jQuery.js"></script>
-    <!--  <script  src="js/dict.js"></script>-->
-    <script>
-        $(document).on("click", "#button_lookup", function () { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-            $.get("DictServlet", function (responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-                $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-            });
-        });
-    </script>
+    <script src="js/dict.js"></script>
+
 </head>
 <body>
 <div>
-    <h1>WAP Online Dictionary</h1>
 
+    <div class="header">
+        <a href="#default" class="logo">WAP Online Dictionary</a>
+    </div>
+
+    <!------------------------------------------------------------------>
     <span>Term:</span>
     <label>
-        <input type="text" name="query" maxlength="20">
+        <input id="query" type="text" name="query" maxlength="20">
     </label>
     <button id="button_lookup">Lookup</button>
-  <div id="somediv"></div>
+
+    <div id="loader"></div>
+
+    <!--    <div id="somediv"></div>-->
+    <ol id="list"></ol>
 
 </div>
-</form>
 </body>
 </html>

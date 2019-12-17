@@ -2,14 +2,14 @@ package io.javabrains.onlinedictonary;
 
 import java.sql.*;
 
-public class DatabaseConnection {
-    protected static Connection initializeDatabase()
-            throws SQLException, ClassNotFoundException {
-        Connection con = null;
+class DatabaseConnection {
+    private static Connection con = null;
+
+    static Connection initializeDatabase() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/entries", "root", "root");
+                    "jdbc:mysql://localhost:3306/entries?useSSL=false", "root", "root");
         } catch (Exception e) {
             e.printStackTrace();
         }
