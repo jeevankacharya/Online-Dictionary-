@@ -67,3 +67,19 @@ body {
         float: none;
     }
 }
+li{
+    color: black;
+}
+
+.inputbottomcontainer{
+    display: inline-table;
+    padding-right: 14px;
+}
+
+#message{
+    width: 40%;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

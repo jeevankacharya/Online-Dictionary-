@@ -1,14 +1,31 @@
 $(document).ready(function () {
 
     $("#button_lookup").click(function () {
-        onLookUpClick();
+        // onLookUpClick();
+        validateinput();
+    });
+    //on enter click
+    $("#query").on('keypress', function (e) {
+        if (e.which == 13) {
+            //  onLookUpClick();
+            validateinput();
+        }
     });
 
+    function validateinput() {
+        if ($('#query').val().trim() === "") {
+            alert("Please enter keyword");
+            $('#query').focus();
+            return false;
+        } else {
+            onLookUpClick();
+        }
+    }
+
     function onLookUpClick() {
-        // $.get("DictServlet", function (responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-        //     $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-        // });
-        document.getElementById("loader").style.display = "block";
+        $('#message').css('display', 'none');
+        var ol = $("#list");
+        ol.empty();
 
         var query = $('#query').val();
         $.ajax({
@@ -17,19 +34,30 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
 
-                var arr = response.wordTypeList;
-                // The <ul> that we will add <li> elements to:
-                var ol = $("#list");
-                ol.empty();
 
-                for (var i = 0; i < arr.length; i++) {
+                var arr;
+                if(response == null){
+                    $('#message').show();
+                    $('#message').html("Not Found !!!");
 
-                    ol.append("<li> (" + response.wordTypeList[i] + ") :: " + response.definitionList[i] + "</li>")
+                }else{
+                    $('#message').css('display', 'none');
+
+                    arr = response.wordTypeList;
+
+
+
+                    // The <ul> that we will add <li> elements to:
+
+
+                    for (var i = 0; i < arr.length; i++) {
+
+                        ol.append("<li> (" + response.wordTypeList[i] + ") :: " + response.definitionList[i] + "</li>")
+                    }
                 }
-
             },
             error: function (xhr) {
-                //Do Something to handle error
+
             }
         });
     }

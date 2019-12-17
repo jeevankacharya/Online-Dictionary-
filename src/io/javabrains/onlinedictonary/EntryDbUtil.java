@@ -19,6 +19,11 @@ class EntryDbUtil {
         List<String> definitionList = new ArrayList<>();
         Entry entry = null;
 
+//        if(rs==null||rs.getFetchSize()==0){
+//            wordTypeList.add("NULL");
+//            definitionList.add("NULL");
+//            entry = new Entry("NULL", wordTypeList, definitionList);
+//        }
         boolean firstTime = true;
         while (rs.next()) {
             String word = rs.getString("word");
